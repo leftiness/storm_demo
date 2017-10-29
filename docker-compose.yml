@@ -1,0 +1,12 @@
+version: '3.3'
+services:
+  storm_demo:
+    build:
+      context: .
+    command:
+      - storm
+      - jar
+      - /app/topology.jar
+      - org.apache.storm.flux.Flux
+      - --local
+      - /app/flux.yml
