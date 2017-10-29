@@ -1,0 +1,44 @@
+plugins
+{
+  id 'java'
+  id 'com.github.johnrengelman.shadow' version '2.0.1'
+}
+
+repositories
+{
+  mavenCentral()
+  maven
+  {
+    url 'http://clojars.org/repo/'
+  }
+}
+
+dependencies
+{
+  compile 'org.apache.storm:storm-core:1.1.1'
+  compile 'org.apache.storm:flux-core:1.1.1'
+  compile 'org.apache.storm:flux-wrappers:1.1.1'
+}
+
+jar
+{
+  manifest
+  {
+    attributes 'Main-Class': 'org.apache.storm.flux.Flux'
+  }
+}
+
+shadowJar
+{
+  baseName   = 'topology'
+  classifier = null
+  version    = null
+  dependencies
+  {
+    exclude(dependency('org.apache.storm:storm-core:1.1.1'))
+  }
+}
+
+group 'com.gmail.leftiness'
+version '1.0.0'
+defaultTasks 'build'
