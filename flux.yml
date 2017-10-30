@@ -3,25 +3,15 @@ config:
   topology.workers: 1
 spouts:
   - id: spout-1
-    className: com.gmail.leftiness.storm_demo.spout.WordSpout
+    className: com.gmail.leftiness.storm_demo.spout.ChatSpout
     parallelism: 1
 bolts:
   - id: bolt-1
-    className: org.apache.storm.testing.TestWordCounter
-    parallelism: 1
-  - id: bolt-2
     className: org.apache.storm.flux.wrappers.bolts.LogInfoBolt
     parallelism: 1
 streams:
   - name: spout-1 --> bolt-1
     from: spout-1
     to: bolt-1
-    grouping:
-      type: FIELDS
-      args:
-        - word
-  - name: bolt-1 --> bolt2
-    from: bolt-1
-    to: bolt-2
     grouping:
       type: SHUFFLE
