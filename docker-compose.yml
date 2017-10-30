@@ -10,3 +10,7 @@ services:
       - org.apache.storm.flux.Flux
       - --local
       - /app/flux.yml
+    environment:
+      BOT_NAME: botbotbotbot
+      BOT_SERVER: irc.freenode.net
+      BOT_CHANNEL: '#pircbotx'
